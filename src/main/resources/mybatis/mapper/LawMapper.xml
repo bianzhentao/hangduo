@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.springboot2018.hangduo.mapper.LawMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.springboot2018.hangduo.pojo.Law" >
+    <id column="law_id" property="lawId" jdbcType="VARCHAR" />
+    <result column="other_name" property="otherName" jdbcType="VARCHAR" />
+    <result column="law_num" property="lawNum" jdbcType="VARCHAR" />
+    <result column="law_name" property="lawName" jdbcType="VARCHAR" />
+    <result column="isShow" property="isshow" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    law_id, other_name, law_num, law_name, isShow, state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.springboot2018.hangduo.pojo.LawExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from law
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from law
+    where law_id = #{lawId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from law
+    where law_id = #{lawId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.LawExample" >
+    delete from law
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.springboot2018.hangduo.pojo.Law" >
+    insert into law (law_id, other_name, law_num, 
+      law_name, isShow, state
+      )
+    values (#{lawId,jdbcType=VARCHAR}, #{otherName,jdbcType=VARCHAR}, #{lawNum,jdbcType=VARCHAR}, 
+      #{lawName,jdbcType=VARCHAR}, #{isshow,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Law" >
+    insert into law
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lawId != null" >
+        law_id,
+      </if>
+      <if test="otherName != null" >
+        other_name,
+      </if>
+      <if test="lawNum != null" >
+        law_num,
+      </if>
+      <if test="lawName != null" >
+        law_name,
+      </if>
+      <if test="isshow != null" >
+        isShow,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lawId != null" >
+        #{lawId,jdbcType=VARCHAR},
+      </if>
+      <if test="otherName != null" >
+        #{otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="lawNum != null" >
+        #{lawNum,jdbcType=VARCHAR},
+      </if>
+      <if test="lawName != null" >
+        #{lawName,jdbcType=VARCHAR},
+      </if>
+      <if test="isshow != null" >
+        #{isshow,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.LawExample" resultType="java.lang.Integer" >
+    select count(*) from law
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update law
+    <set >
+      <if test="record.lawId != null" >
+        law_id = #{record.lawId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherName != null" >
+        other_name = #{record.otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lawNum != null" >
+        law_num = #{record.lawNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lawName != null" >
+        law_name = #{record.lawName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isshow != null" >
+        isShow = #{record.isshow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update law
+    set law_id = #{record.lawId,jdbcType=VARCHAR},
+      other_name = #{record.otherName,jdbcType=VARCHAR},
+      law_num = #{record.lawNum,jdbcType=VARCHAR},
+      law_name = #{record.lawName,jdbcType=VARCHAR},
+      isShow = #{record.isshow,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Law" >
+    update law
+    <set >
+      <if test="otherName != null" >
+        other_name = #{otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="lawNum != null" >
+        law_num = #{lawNum,jdbcType=VARCHAR},
+      </if>
+      <if test="lawName != null" >
+        law_name = #{lawName,jdbcType=VARCHAR},
+      </if>
+      <if test="isshow != null" >
+        isShow = #{isshow,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where law_id = #{lawId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.springboot2018.hangduo.pojo.Law" >
+    update law
+    set other_name = #{otherName,jdbcType=VARCHAR},
+      law_num = #{lawNum,jdbcType=VARCHAR},
+      law_name = #{lawName,jdbcType=VARCHAR},
+      isShow = #{isshow,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where law_id = #{lawId,jdbcType=VARCHAR}
+  </update>
+</mapper>

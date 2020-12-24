@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.springboot2018.hangduo.mapper.ClauseMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.springboot2018.hangduo.pojo.Clause" >
+    <id column="clause_id" property="clauseId" jdbcType="VARCHAR" />
+    <result column="clause_realName" property="clauseRealname" jdbcType="VARCHAR" />
+    <result column="clause_title" property="clauseTitle" jdbcType="VARCHAR" />
+    <result column="clause_name" property="clauseName" jdbcType="VARCHAR" />
+    <result column="clause_num" property="clauseNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    clause_id, clause_realName, clause_title, clause_name, clause_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.springboot2018.hangduo.pojo.ClauseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clause
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from clause
+    where clause_id = #{clauseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from clause
+    where clause_id = #{clauseId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.ClauseExample" >
+    delete from clause
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.springboot2018.hangduo.pojo.Clause" >
+    insert into clause (clause_id, clause_realName, clause_title, 
+      clause_name, clause_num)
+    values (#{clauseId,jdbcType=VARCHAR}, #{clauseRealname,jdbcType=VARCHAR}, #{clauseTitle,jdbcType=VARCHAR}, 
+      #{clauseName,jdbcType=VARCHAR}, #{clauseNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Clause" >
+    insert into clause
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clauseId != null" >
+        clause_id,
+      </if>
+      <if test="clauseRealname != null" >
+        clause_realName,
+      </if>
+      <if test="clauseTitle != null" >
+        clause_title,
+      </if>
+      <if test="clauseName != null" >
+        clause_name,
+      </if>
+      <if test="clauseNum != null" >
+        clause_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clauseId != null" >
+        #{clauseId,jdbcType=VARCHAR},
+      </if>
+      <if test="clauseRealname != null" >
+        #{clauseRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="clauseTitle != null" >
+        #{clauseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="clauseName != null" >
+        #{clauseName,jdbcType=VARCHAR},
+      </if>
+      <if test="clauseNum != null" >
+        #{clauseNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.ClauseExample" resultType="java.lang.Integer" >
+    select count(*) from clause
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update clause
+    <set >
+      <if test="record.clauseId != null" >
+        clause_id = #{record.clauseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clauseRealname != null" >
+        clause_realName = #{record.clauseRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clauseTitle != null" >
+        clause_title = #{record.clauseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clauseName != null" >
+        clause_name = #{record.clauseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clauseNum != null" >
+        clause_num = #{record.clauseNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update clause
+    set clause_id = #{record.clauseId,jdbcType=VARCHAR},
+      clause_realName = #{record.clauseRealname,jdbcType=VARCHAR},
+      clause_title = #{record.clauseTitle,jdbcType=VARCHAR},
+      clause_name = #{record.clauseName,jdbcType=VARCHAR},
+      clause_num = #{record.clauseNum,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Clause" >
+    update clause
+    <set >
+      <if test="clauseRealname != null" >
+        clause_realName = #{clauseRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="clauseTitle != null" >
+        clause_title = #{clauseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="clauseName != null" >
+        clause_name = #{clauseName,jdbcType=VARCHAR},
+      </if>
+      <if test="clauseNum != null" >
+        clause_num = #{clauseNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where clause_id = #{clauseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.springboot2018.hangduo.pojo.Clause" >
+    update clause
+    set clause_realName = #{clauseRealname,jdbcType=VARCHAR},
+      clause_title = #{clauseTitle,jdbcType=VARCHAR},
+      clause_name = #{clauseName,jdbcType=VARCHAR},
+      clause_num = #{clauseNum,jdbcType=VARCHAR}
+    where clause_id = #{clauseId,jdbcType=VARCHAR}
+  </update>
+</mapper>
