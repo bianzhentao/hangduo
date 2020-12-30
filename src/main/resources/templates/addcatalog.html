@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>添加法规目录</h1>
+<form action="/add" method="post">
+    <p>目录名称：<input type="text" name="cname"></p>
+    <p>同级目录排序：<input type="text" name="sortpx"></p>
+    <p>所属法规：<select name="cataName">
+        <option>请选择</option>
+        <option th:each="c:${catalogs}" th:value="${c.catalogId}" th:text="${c.catalogName}"></option>
+    </select>
+    </p>
+    <p>上级目录<input type="text" value="法规目录" name="cataId"></p>
+    <input type="submit" value="保存"><input type="button" value="返回" onclick="back()">
+</form>
+</body>
+<script>
+    function back() {
+        window.history.back();
+    }
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>修改法规目录</h2>
+<form action="/doupdate" method="post">
+    <input type="hidden" name="cid" th:value="${dirname.cid}">
+    <p>法规目录：<input type="text" name="cname" th:value="${dirname.cname}"></p>
+    <p>同级目录排序：<input type="text" name="sortpx" th:value="${dirname.sortpx}" readonly></p>
+    <input type="hidden" name="cataName" th:value="${catalog.catalogId}">
+    <p>所属法规：<input type="text" th:value="${catalog.catalogName}" readonly>
+<!--        <select name="cataName">-->
+<!--            <option th:each="a:${all}" th:text="${a.catalogName}" th:selected="${catalog eq a.catalogName}" th:value="${a.catalogId}"></option>-->
+<!--        </select>-->
+    </p>
+    <p>上级目录：<input type="text" name="cataId" th:value="法规目录" readonly></p>
+    <input type="submit" value="保存"><input type="button" value="返回" onclick="back()">
+</form>
+</body>
+<script>
+    function back() {
+        window.history.back();
+    }
+</script>
+</html>
