@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.kgc.springboot2018.hangduo.mapper.LawMapper" >
   <resultMap id="BaseResultMap" type="com.kgc.springboot2018.hangduo.pojo.Law" >
-    <id column="law_id" property="lawId" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="law_id" property="lawId" jdbcType="VARCHAR" />
     <result column="other_name" property="otherName" jdbcType="VARCHAR" />
     <result column="law_num" property="lawNum" jdbcType="VARCHAR" />
     <result column="law_name" property="lawName" jdbcType="VARCHAR" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    law_id, other_name, law_num, law_name, isShow, state
+    id, law_id, other_name, law_num, law_name, isShow, state
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.springboot2018.hangduo.pojo.LawExample" >
     select
@@ -84,15 +85,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from law
-    where law_id = #{lawId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from law
-    where law_id = #{lawId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.LawExample" >
     delete from law
@@ -101,16 +102,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.kgc.springboot2018.hangduo.pojo.Law" >
-    insert into law (law_id, other_name, law_num, 
-      law_name, isShow, state
-      )
-    values (#{lawId,jdbcType=VARCHAR}, #{otherName,jdbcType=VARCHAR}, #{lawNum,jdbcType=VARCHAR}, 
-      #{lawName,jdbcType=VARCHAR}, #{isshow,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
-      )
+    insert into law (id, law_id, other_name, 
+      law_num, law_name, isShow, 
+      state)
+    values (#{id,jdbcType=INTEGER}, #{lawId,jdbcType=VARCHAR}, #{otherName,jdbcType=VARCHAR}, 
+      #{lawNum,jdbcType=VARCHAR}, #{lawName,jdbcType=VARCHAR}, #{isshow,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Law" >
     insert into law
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="lawId != null" >
         law_id,
       </if>
@@ -131,6 +135,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="lawId != null" >
         #{lawId,jdbcType=VARCHAR},
       </if>
@@ -160,6 +167,9 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update law
     <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
       <if test="record.lawId != null" >
         law_id = #{record.lawId,jdbcType=VARCHAR},
       </if>
@@ -185,7 +195,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update law
-    set law_id = #{record.lawId,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=INTEGER},
+      law_id = #{record.lawId,jdbcType=VARCHAR},
       other_name = #{record.otherName,jdbcType=VARCHAR},
       law_num = #{record.lawNum,jdbcType=VARCHAR},
       law_name = #{record.lawName,jdbcType=VARCHAR},
@@ -198,6 +209,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Law" >
     update law
     <set >
+      <if test="lawId != null" >
+        law_id = #{lawId,jdbcType=VARCHAR},
+      </if>
       <if test="otherName != null" >
         other_name = #{otherName,jdbcType=VARCHAR},
       </if>
@@ -214,15 +228,16 @@
         state = #{state,jdbcType=VARCHAR},
       </if>
     </set>
-    where law_id = #{lawId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.kgc.springboot2018.hangduo.pojo.Law" >
     update law
-    set other_name = #{otherName,jdbcType=VARCHAR},
+    set law_id = #{lawId,jdbcType=VARCHAR},
+      other_name = #{otherName,jdbcType=VARCHAR},
       law_num = #{lawNum,jdbcType=VARCHAR},
       law_name = #{lawName,jdbcType=VARCHAR},
       isShow = #{isshow,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR}
-    where law_id = #{lawId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
