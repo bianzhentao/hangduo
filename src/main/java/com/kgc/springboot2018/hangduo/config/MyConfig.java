@@ -7,7 +7,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MyConfig implements WebMvcConfigurer{
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("tan").setViewName("tan");
+        registry.addViewController("/uppas").setViewName("findWord");
+
+
+
     }
 
 }

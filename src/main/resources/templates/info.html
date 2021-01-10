@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>忘记密码</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<script th:src="@{/js/rem.js}"></script>
+		<script th:src="@{/js/jquery.min.js}" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/page.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/all.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/mui.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/loaders.min.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.mobile.css}" />
+		<!-- <link rel="stylesheet" type="text/css" href="css/loading.css"/> -->
+		<link rel="stylesheet" type="text/css" th:href="@{/slick/slick.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/iconfont/iconfont.css}" />
+	</head>
+
+	<body>
+		<!--header star-->
+		<header class="mui-bar mui-bar1 mui-bar-nav mui-bar-nav1" id="header">
+			<a class="back-btn" th:href="@{/javascript:value(0)}" th:onclick="history.back()">
+				<i class="iconfont icon-fanhui"></i>
+			</a>
+			<div class="mui-title">个人信息</div>
+		</header>
+		<!--header end-->
+		
+		<div class="warp clearfloat" style="padding: 0.4rem;background: #fff;">
+
+					<div class="form-group login-group_re">
+						姓名：
+						<input type="text"   name="usermail" class="form-control inpt-form"  th:placeholder="${users.upName}" readonly= "true ">
+
+					</div>
+					<div class="form-group login-group_re">
+						手机号：
+						<input type="text"   name="usermail" class="form-control inpt-form"  th:placeholder="${users.upPhone}" readonly= "true ">
+
+					</div>
+					<div class="form-group login-group_re">
+						性别：
+						<input th:if="${users.upSex==1}"  type="text"   name="usermail" class="form-control inpt-form"  th:placeholder="男" readonly= "true ">
+						<input th:if="${users.upSex==0}"  type="text"   name="usermail" class="form-control inpt-form"  th:placeholder="女" readonly= "true ">
+
+					</div>
+					<div class="form-group login-group_re">
+						注册时间：
+						<input type="text"   name="usermail" class="form-control inpt-form"  th:placeholder="${#dates.format(users.upDate,'yyyy-MM-dd')}" readonly= "true ">
+
+					</div>
+
+					<button type="button" class="conf-btn login-btns" th:onclick="history.back()">返回</button>
+
+		
+		</div>
+		
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+		<!-- 密码显示隐藏 -->
+		<script th:src="@{/js/bootstrap-show-password.js}"></script>
+		
+		<script th:src="@{/js/mui.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/hmt.js}"></script>
+		<script th:src="@{/slick/slick.js}" type="text/javascript"></script>
+		<script th:src="@{/js/swiper.min.js}"></script>
+	</body>
+
+</html>

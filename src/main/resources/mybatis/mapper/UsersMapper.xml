@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.springboot2018.hangduo.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.springboot2018.hangduo.pojo.Users" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="up_name" property="upName" jdbcType="VARCHAR" />
+    <result column="up_phone" property="upPhone" jdbcType="VARCHAR" />
+    <result column="up_sex" property="upSex" jdbcType="INTEGER" />
+    <result column="up_VIPType" property="upViptype" jdbcType="INTEGER" />
+    <result column="up_date" property="upDate" jdbcType="TIMESTAMP" />
+    <result column="ip_password" property="ipPassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uid, up_name, up_phone, up_sex, up_VIPType, up_date, ip_password
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.springboot2018.hangduo.pojo.UsersExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.UsersExample" >
+    delete from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.springboot2018.hangduo.pojo.Users" >
+    insert into users (uid, up_name, up_phone, 
+      up_sex, up_VIPType, up_date, 
+      ip_password)
+    values (#{uid,jdbcType=INTEGER}, #{upName,jdbcType=VARCHAR}, #{upPhone,jdbcType=VARCHAR}, 
+      #{upSex,jdbcType=INTEGER}, #{upViptype,jdbcType=INTEGER}, #{upDate,jdbcType=TIMESTAMP}, 
+      #{ipPassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="upName != null" >
+        up_name,
+      </if>
+      <if test="upPhone != null" >
+        up_phone,
+      </if>
+      <if test="upSex != null" >
+        up_sex,
+      </if>
+      <if test="upViptype != null" >
+        up_VIPType,
+      </if>
+      <if test="upDate != null" >
+        up_date,
+      </if>
+      <if test="ipPassword != null" >
+        ip_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="upName != null" >
+        #{upName,jdbcType=VARCHAR},
+      </if>
+      <if test="upPhone != null" >
+        #{upPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="upSex != null" >
+        #{upSex,jdbcType=INTEGER},
+      </if>
+      <if test="upViptype != null" >
+        #{upViptype,jdbcType=INTEGER},
+      </if>
+      <if test="upDate != null" >
+        #{upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ipPassword != null" >
+        #{ipPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.UsersExample" resultType="java.lang.Integer" >
+    select count(*) from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update users
+    <set >
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.upName != null" >
+        up_name = #{record.upName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upPhone != null" >
+        up_phone = #{record.upPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.upSex != null" >
+        up_sex = #{record.upSex,jdbcType=INTEGER},
+      </if>
+      <if test="record.upViptype != null" >
+        up_VIPType = #{record.upViptype,jdbcType=INTEGER},
+      </if>
+      <if test="record.upDate != null" >
+        up_date = #{record.upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ipPassword != null" >
+        ip_password = #{record.ipPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update users
+    set uid = #{record.uid,jdbcType=INTEGER},
+      up_name = #{record.upName,jdbcType=VARCHAR},
+      up_phone = #{record.upPhone,jdbcType=VARCHAR},
+      up_sex = #{record.upSex,jdbcType=INTEGER},
+      up_VIPType = #{record.upViptype,jdbcType=INTEGER},
+      up_date = #{record.upDate,jdbcType=TIMESTAMP},
+      ip_password = #{record.ipPassword,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Users" >
+    update users
+    <set >
+      <if test="upName != null" >
+        up_name = #{upName,jdbcType=VARCHAR},
+      </if>
+      <if test="upPhone != null" >
+        up_phone = #{upPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="upSex != null" >
+        up_sex = #{upSex,jdbcType=INTEGER},
+      </if>
+      <if test="upViptype != null" >
+        up_VIPType = #{upViptype,jdbcType=INTEGER},
+      </if>
+      <if test="upDate != null" >
+        up_date = #{upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ipPassword != null" >
+        ip_password = #{ipPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.springboot2018.hangduo.pojo.Users" >
+    update users
+    set up_name = #{upName,jdbcType=VARCHAR},
+      up_phone = #{upPhone,jdbcType=VARCHAR},
+      up_sex = #{upSex,jdbcType=INTEGER},
+      up_VIPType = #{upViptype,jdbcType=INTEGER},
+      up_date = #{upDate,jdbcType=TIMESTAMP},
+      ip_password = #{ipPassword,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>
