@@ -1,5 +1,7 @@
 package com.kgc.springboot2018.hangduo.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kgc.springboot2018.hangduo.mapper.LawMapper;
 import com.kgc.springboot2018.hangduo.pojo.Law;
 import com.kgc.springboot2018.hangduo.pojo.LawExample;
@@ -8,54 +10,29 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-
 @Service
 public class LawServiceImpl implements LawService {
-
     @Resource
     LawMapper lawMapper;
+    @Override
+    public List<Law> selecta(Integer id) {
+        return null;
+    }
 
     @Override
-    public List<Law> getList(String lawId, String lawName) {
-        LawExample example=new LawExample();
-        if (lawId!=null||lawName!=null) {
-            if (lawName == "" && lawId == "") {
-                return lawMapper.selectByExample(null);
-            } else if (lawName == "" && lawId != "") {
-                example.createCriteria().andLawIdLike("%"+lawId+"%");
-                return lawMapper.selectByExample(example);
-            } else if (lawName != "" && lawId == "") {
-                example.createCriteria().andLawNameLike("%"+lawName+"%");
-                return lawMapper.selectByExample(example);
-            } else {
-                example.createCriteria().andLawNameLike("%"+lawName+"%").andLawIdLike("%"+lawId+"%");
-                return lawMapper.selectByExample(example);
-            }
+    public PageInfo<Law> page(Integer pageName, Integer pageSize, String lawId) {
+        PageHelper.startPage(pageName,pageSize);
+        if (lawId!=""&&lawId!=null){
+            LawExample example=new LawExample();
+            example.createCriteria().andLawIdEqualTo(lawId);
+            List<Law> invitations = lawMapper.selectByExample(example);
+            PageInfo<Law> pageInfo=new PageInfo<>(invitations);
+            return pageInfo;
         }else {
-            return lawMapper.selectByExample(null);
+            List<Law> laws = lawMapper.selectByExample(null);
+            PageInfo<Law> pageInfo=new PageInfo<>(laws);
+            return pageInfo;
         }
+
     }
-
-    @Override
-    public int add(Law law) {
-        return lawMapper.insertSelective(law);
-    }
-
-    @Override
-    public int update(Law law) {
-        return lawMapper.updateByPrimaryKeySelective(law);
-    }
-
-
-    @Override
-    public int del(Integer id) {
-        return lawMapper.deleteByPrimaryKey(id);
-    }
-
-    @Override
-    public Law select(Integer id) {
-        return lawMapper.selectByPrimaryKey(id);
-    }
-
-
 }

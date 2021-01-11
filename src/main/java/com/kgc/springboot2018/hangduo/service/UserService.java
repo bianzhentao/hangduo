@@ -9,4 +9,6 @@ public interface UserService {
     int adduser(User user);
    /* 验证名字是否存在*/
     int check(String username);
+    //查询数据
+    User selectByPrimaryKey(Integer id);
 }

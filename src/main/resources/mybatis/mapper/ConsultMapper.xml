@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.springboot2018.hangduo.mapper.ConsultMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.springboot2018.hangduo.pojo.Consult" >
+    <id column="zid" property="zid" jdbcType="INTEGER" />
+    <result column="zcontent" property="zcontent" jdbcType="VARCHAR" />
+    <result column="zphone" property="zphone" jdbcType="VARCHAR" />
+    <result column="ztime" property="ztime" jdbcType="TIMESTAMP" />
+    <result column="zaddress" property="zaddress" jdbcType="VARCHAR" />
+    <result column="wechat_name" property="wechatName" jdbcType="VARCHAR" />
+    <result column="laws_num" property="lawsNum" jdbcType="VARCHAR" />
+    <result column="con_id" property="conId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    zid, zcontent, zphone, ztime, zaddress, wechat_name, laws_num, con_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.springboot2018.hangduo.pojo.ConsultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from consult
+    where zid = #{zid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from consult
+    where zid = #{zid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.ConsultExample" >
+    delete from consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.springboot2018.hangduo.pojo.Consult" >
+    insert into consult (zid, zcontent, zphone, 
+      ztime, zaddress, wechat_name, 
+      laws_num, con_id)
+    values (#{zid,jdbcType=INTEGER}, #{zcontent,jdbcType=VARCHAR}, #{zphone,jdbcType=VARCHAR}, 
+      #{ztime,jdbcType=TIMESTAMP}, #{zaddress,jdbcType=VARCHAR}, #{wechatName,jdbcType=VARCHAR}, 
+      #{lawsNum,jdbcType=VARCHAR}, #{conId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Consult" >
+    insert into consult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="zid != null" >
+        zid,
+      </if>
+      <if test="zcontent != null" >
+        zcontent,
+      </if>
+      <if test="zphone != null" >
+        zphone,
+      </if>
+      <if test="ztime != null" >
+        ztime,
+      </if>
+      <if test="zaddress != null" >
+        zaddress,
+      </if>
+      <if test="wechatName != null" >
+        wechat_name,
+      </if>
+      <if test="lawsNum != null" >
+        laws_num,
+      </if>
+      <if test="conId != null" >
+        con_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="zid != null" >
+        #{zid,jdbcType=INTEGER},
+      </if>
+      <if test="zcontent != null" >
+        #{zcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="zphone != null" >
+        #{zphone,jdbcType=VARCHAR},
+      </if>
+      <if test="ztime != null" >
+        #{ztime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zaddress != null" >
+        #{zaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatName != null" >
+        #{wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="lawsNum != null" >
+        #{lawsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="conId != null" >
+        #{conId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.springboot2018.hangduo.pojo.ConsultExample" resultType="java.lang.Integer" >
+    select count(*) from consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update consult
+    <set >
+      <if test="record.zid != null" >
+        zid = #{record.zid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zcontent != null" >
+        zcontent = #{record.zcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zphone != null" >
+        zphone = #{record.zphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ztime != null" >
+        ztime = #{record.ztime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zaddress != null" >
+        zaddress = #{record.zaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechatName != null" >
+        wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lawsNum != null" >
+        laws_num = #{record.lawsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.conId != null" >
+        con_id = #{record.conId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update consult
+    set zid = #{record.zid,jdbcType=INTEGER},
+      zcontent = #{record.zcontent,jdbcType=VARCHAR},
+      zphone = #{record.zphone,jdbcType=VARCHAR},
+      ztime = #{record.ztime,jdbcType=TIMESTAMP},
+      zaddress = #{record.zaddress,jdbcType=VARCHAR},
+      wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+      laws_num = #{record.lawsNum,jdbcType=VARCHAR},
+      con_id = #{record.conId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.springboot2018.hangduo.pojo.Consult" >
+    update consult
+    <set >
+      <if test="zcontent != null" >
+        zcontent = #{zcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="zphone != null" >
+        zphone = #{zphone,jdbcType=VARCHAR},
+      </if>
+      <if test="ztime != null" >
+        ztime = #{ztime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zaddress != null" >
+        zaddress = #{zaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatName != null" >
+        wechat_name = #{wechatName,jdbcType=VARCHAR},
+      </if>
+      <if test="lawsNum != null" >
+        laws_num = #{lawsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="conId != null" >
+        con_id = #{conId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where zid = #{zid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.springboot2018.hangduo.pojo.Consult" >
+    update consult
+    set zcontent = #{zcontent,jdbcType=VARCHAR},
+      zphone = #{zphone,jdbcType=VARCHAR},
+      ztime = #{ztime,jdbcType=TIMESTAMP},
+      zaddress = #{zaddress,jdbcType=VARCHAR},
+      wechat_name = #{wechatName,jdbcType=VARCHAR},
+      laws_num = #{lawsNum,jdbcType=VARCHAR},
+      con_id = #{conId,jdbcType=INTEGER}
+    where zid = #{zid,jdbcType=INTEGER}
+  </update>
+</mapper>

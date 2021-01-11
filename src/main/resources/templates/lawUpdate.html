@@ -7,7 +7,7 @@
 <script type="text/javascript" src="webjars/jquery/3.4.1/jquery.js"></script>
 <body>
 <h1>法规修改页面</h1>
-<form th:action="@{/doupdate}" method="post">
+<form th:action="@{/doupdatelaw}" method="post">
     <input type="hidden" name="id" th:value="${select.id}">
     <p>法规部号:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="lawId" th:value="${select.lawId}"  required></p>
     <p>部号别名:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="otherName" th:value="${select.otherName}" required></p>

@@ -42,4 +42,9 @@ public class UserServiceImpl implements UserService {
         System.out.println(i+"数量");
         return i;
     }
+
+    @Override
+    public User selectByPrimaryKey(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 }

@@ -30,6 +30,6 @@ public class MyMVCcon implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //拦截所有请求，排除登录和静态资源
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/a/login","/zhuces","/webjars/**","/title.html","/zhuce");
+        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/a/login","/zhuces","/webjars/**","/title.html","/zhuce","/tologin","/WebLogin.html","/WebLogin");
     }
 }

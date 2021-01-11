@@ -2,6 +2,7 @@ package com.kgc.springboot2018.hangduo.controller;
 
 import com.kgc.springboot2018.hangduo.pojo.Law;
 import com.kgc.springboot2018.hangduo.service.LawService;
+import com.kgc.springboot2018.hangduo.service.LawsService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ import java.util.List;
 public class LawController {
 
     @Resource
-    LawService lawService;
+    LawsService lawService;
 
     @RequestMapping("/query")
     public String getAll(Model model,@Param("lawName")String lawName,@Param("lawId")String lawId){
@@ -33,12 +34,12 @@ public class LawController {
         return "laws";
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/addlaw")
     public String toadd(){
         return "lawAdd";
     }
 
-    @RequestMapping("/doadd")
+    @RequestMapping("/doaddlaw")
     @ResponseBody
     public String add(Law law,HttpServletRequest request,Model model){
         String lawId=request.getParameter("lawId");
@@ -70,7 +71,7 @@ public class LawController {
         return "lawUpdate";
     }
 
-    @RequestMapping("/doupdate")
+    @RequestMapping("/doupdatelaw")
     @ResponseBody
     public String doupdate(HttpServletRequest request,Law law,@Param("id")Integer id){
         String lawId=request.getParameter("lawId");

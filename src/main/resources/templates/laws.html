@@ -12,14 +12,9 @@
 <body>
 <div class="title">
     <span class="biao">航多知识管理系统</span>
-    <span class="lie">你好，[[session.realName]]</span>
+    <span class="lie">你好，[[${session.realName}]]</span>
 </div>
-    <li><a th:href="@{#}">法规列表</a></li>
-    <li><a th:href="@{#}">法规目录管理</a></li>
-    <li><a th:href="@{#}">条款列表</a></li>
-    <li><a th:href="@{/userManager}">用户管理</a></li>
-</div>
-<div><span>法规列表</span><a th:href="@{/add}">法规添加</a></div>
+<div><span>法规列表</span><a th:href="@{/addlaw}">法规添加</a></div>
 <form th:action="@{/query}" method="post">
     <span>法规部号：<input type="text" th:value="${lawId}" name="lawId">&ensp;&ensp;
     法规名称：<input type="text" th:value="${lawName}" name="lawName"></span>

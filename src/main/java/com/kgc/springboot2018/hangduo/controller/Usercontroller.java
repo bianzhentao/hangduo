@@ -27,6 +27,7 @@ public class Usercontroller {
             response.addCookie(cookiea);
         }
         if (login!=null){
+            session.setAttribute("login",login);
             String userName1ame=login.getUserName();
             System.out.println(userName1ame);
             session.setAttribute("userName1",userName1ame);
@@ -35,16 +36,20 @@ public class Usercontroller {
             session.setAttribute("realName",realName);
 
             out.print("<script>alert('登录成功')</script>");
-            return "redirect:/zhuyee";
+            return "redirect:/main";
         }else {
             out.print("<script>alert('登录失败,用户名户密码错误')</script>");
             model.addAttribute("msg","用户名或密码错误");
             return "title";
         }
-
-
     }
-
+    @RequestMapping("/main")
+    public String tomain(HttpSession session,Model model){
+        User login = (User) session.getAttribute("login");
+        User user = userService.selectByPrimaryKey(login.getId());
+        model.addAttribute("users",user);
+        return "main";
+    }
     @RequestMapping("/zhuces")
     public String zhuces(){
         return "zhuce";

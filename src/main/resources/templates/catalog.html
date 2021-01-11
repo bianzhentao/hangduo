@@ -13,11 +13,11 @@
 </select>
     <input type="submit" value="查询">
 </form>
-<table>
+<table border="1px">
     <tr>
-        <td>目录名称</td>
-        <td>排序</td>
-        <td>操作</td>
+        <td style="width: 100px">目录名称</td>
+        <td style="width: 50px">排序</td>
+        <td style="width: 200px">操作</td>
     </tr>
     <tr th:each="m:${map}">
         <td th:text="${m.key.cname}"></td>
@@ -27,11 +27,11 @@
             <a href="#">删除</a>
             <a th:href="@{/adddown(cid=${m.key.cid})}">添加下级菜单</a>
         </td>
-        <table>
+        <table border="1px">
             <tr th:each="v:${m.value}">
-                <td th:text="${v.cname}"></td>
-                <td th:text="${v.sortpx}"></td>
-                <td>
+                <td th:text="${v.cname}" style="width: 100px"></td>
+                <td th:text="${v.sortpx}" style="width: 50px"></td>
+                <td style="width: 200px">
                     <a th:href="@{/update(cid=${v.cid})}">修改</a>
                     <a href="#">删除</a>
 <!--                    <a href="#">添加下级菜单</a>-->
