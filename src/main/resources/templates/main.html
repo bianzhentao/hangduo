@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+
+</style>
+<body>
+<div class="title">
+    <span class="biao">航多知识管理系统</span>
+    <span class="lie">你好,[[${session.realName}]]</span>
+</div>
+<div class="frame">
+    <a href="#">个人信息</a>
+    <a th:href="@{/xiugai}">修改密码</a>
+</div>
+<!--<form th:action="@{/toupdate}" method="post">
+    <div th:each="user : ${users}">
+        <p><input type="hidden" name="id" th:value="${user.id}"></p>
+        <p><input type="hidden" name="username" th:value="${user.userName}"></p>
+        <p><input type="hidden" name="password" th:value="${user.password}"></p>
+        <p>归属公司：<span name="company" th:text="${user.company}"></span></p>
+        <p>归属部门：<span name="department" th:text="${user.department}"></span></p>
+        <p>管理员姓名：<input type="text" name="real_name" th:value="${user.realName}"></p>
+        <p>管理员手机号：<input type="text" name="telephone" th:value="${user.telephone}"></p>
+        <p>备注：<input type="text" name="comments" th:value="${user.comments}"></p>
+        <p>用户信息：&nbsp;&nbsp;航多知识管理系统系统维护员</p>
+        <p>上次登录：&nbsp;&nbsp;IP:192.168.66.95&nbsp;&nbsp;时间：（自己写一下当前时间）</p>
+        <p><input type="submit" value="保存"></p>
+    </div>
+</form>-->
+</body>
+</html>

@@ -48,8 +48,9 @@
 <!--</div>-->
 <h1 class="form-signin-heading">航多知识管理系统</h1>
 <form id="loginForm" class="form-signin" action="/a/login" method="post">
+    <p th:if="${not #strings.isEmpty(msg)}" th:text="${msg}"></p>
     <label class="input-label" for="username">登录名</label><br>
-    <input type="text" id="username" name="username" class="input-block-level required" value=""><br>
+    <input type="text" id="username" name="userName" class="input-block-level required" value=""><br>
     <label class="input-label" for="password">密码</label><br>
     <input type="password" id="password" name="password" class="input-block-level required"><br>
     <input class="btn btn-large btn-primary" type="submit" value="登 录"/>&nbsp;&nbsp;

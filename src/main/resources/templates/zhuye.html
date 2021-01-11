@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="title">
+    <span class="biao">欢迎使用航多知识管理系统</span>
+    <p class="lie">您好,[[${session.realName}]]</p>
+</div>
+<div class="frame">
+    <a href="#">个人信息</a>
+    <a href="#" >我的收藏</a>
+</div>
+
+<form action="" method="post">
+<input type="text"  name="law">
+    <input type="submit" value="查询">
+
+
+<table border="1px">
+    <tr>
+        <td>法规部号</td>
+        <td>部门别号</td>
+        <td>法规名称</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="u:${pageInfo.list}">
+        <td th:text="${u.lawId}"></td>
+        <td th:text="${u.otherName}"></td>
+        <td th:text="${u.lawName}"></td>
+        <td><a href="#">咨询</a><a href="#">收藏</a> </td>
+    </tr>
+    <tr>
+        <td colspan="7">
+            <a th:href="@{/zhuyee(pageNum=1,law=${law})}">首页</a>
+            <span th:if="${pageInfo.hasPreviousPage==true}">
+                    <a th:href="@{/zhuyee(pageNum=${pageInfo.prePage},law=${law})}">上一页</a>
+                    </span>
+            <span  th:if="${pageInfo.hasNextPage==true}">
+                    <a th:href="@{/zhuyee(pageNum=${pageInfo.nextPage},law=${law})}">下一页</a>
+                    </span>
+            <a th:href="@{/zhuyee(pageNum=${pageInfo.lastPage},law=${law})}">末页</a>
+            第<span th:text="${pageInfo.pageNum}"></span>/<span th:text="${pageInfo.navigateLastPage}"></span>页
+
+            （[[${pageInfo.total}]]/条记录）
+
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>
