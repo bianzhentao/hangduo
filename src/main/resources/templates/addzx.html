@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns：th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>互动</title>
+</head>
+<body>
+<div class="mui-content">
+    <div class="mui-control-content mui-active hudong_box padding_0_15">
+        <div class="c-login">
+            <form class="loginForm" action="/dozx" method="post" >
+                <input type="hidden" name="zid" >
+                <input type="text" name="zname" class="userName" placeholder="请输入姓名,不超过10个字                                             (必填)" lay-verify="required|userName"/>
+                <input type="text" name="zphone"  placeholder="请输入手机号码                                                             (必填)" lay-verify="phone" />
+                <input type="text" name="zaddress" class="userWork" placeholder="工作单位                                                                        (必填)" lay-verify="email" />
+                <input type="text" name="zemail" class="userLogo" placeholder="邮箱" lay-verify="email" />
+                <input type="text" name="wechatName" class="userWx" placeholder="微信号" lay-verify="Wx" />
+                <input type="text" name="lawsNum" class="userClause" placeholder="请输入相关条款号                                            (不超过100字)" lay-verify="Wx" />
+                <p>— 问题描述 —</p>
+                <textarea rows="3" name="zcontent" cols="20" placeholder="字数限制 30-500之间(必填)">
+						</textarea>
+                <div class="xieyi">
+                    <input name="" type="checkbox" value="" checked="checked"/>
+                    我已经阅读并遵守 <span class="blue" style="cursor:pointer">《服务协议》</span>
+                </div>
+                <br>
+                <input type="submit" value="提交" id="regBtn" />
+            </form>
+        </div>
+
+    </div>
+
+
+    <script>
+        $("form").submit(function (){
+            var zname=$("[name='zname']").val();
+            alert(zname);
+            if(zname==""){
+                alert("请输入姓名1-10个字符串");
+                return false;
+            }
+            var zphone=$("[name='zphone']").val();
+            if(zphone==""){
+                alert("请输入手机号码");
+                return false;
+            }
+            if(!(/^1[3456789]d{9}$/.test(phone))){
+                alert("请输入正确得手机号码");
+                return false;
+            }
+            var zaddress=$("[name='zaddress']").val();
+            if(zaddress==""){
+                alert("请输入工作地址");
+                return false;
+            }
+            var zcontent=$("[name='zcontent']").val();
+            if(zcontent.length>30&&zcontent.length<500){
+                alert("请输入咨询内容30-500之间");
+                return false;
+            }
+        })
+
+    </script>
+</div>
+</body>
+</html>

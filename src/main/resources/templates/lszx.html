@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <h1>历史咨询</h1>
+        <table border="1px">
+            <tr>
+                <td>咨询时间</td>
+                <td>咨询内容</td>
+            </tr>
+            <tr th:each="r:${list}">
+                <td th:text="${#dates.format(r.getZtime(),'yyyy-MM-dd')}"></td>
+                <td th:text="${r.getZcontent()}"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
