@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="webjars/jquery/3.4.1/jquery.js"></script>
+<body>
+<h1>法规修改页面</h1>
+<form th:action="@{/doupdate}" method="post">
+    <input type="hidden" name="id" th:value="${select.id}">
+    <p>法规部号:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="lawId" th:value="${select.lawId}"  required></p>
+    <p>部号别名:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="otherName" th:value="${select.otherName}" required></p>
+    <p>法规版本号:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="lawNum" th:value="${select.lawNum}"  required></p>
+    <p>法规名称:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="lawName" th:value="${select.lawName}"  required></p>
+    <p>该法规是否显示:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="isshow" th:value="${select.isshow}" required></p>
+    <p>法规版本说明:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="state" th:value="${select.state}"></p>
+    <input type="submit" value="保存">
+    <input type="reset" value="重置">
+</form>
+</body>
+</html>

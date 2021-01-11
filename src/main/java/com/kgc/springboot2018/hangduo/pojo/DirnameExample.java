@@ -353,6 +353,66 @@ public class DirnameExample {
             addCriterion("cname not between", value1, value2, "cname");
             return (Criteria) this;
         }
+
+        public Criteria andSortpxIsNull() {
+            addCriterion("sortpx is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxIsNotNull() {
+            addCriterion("sortpx is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxEqualTo(Integer value) {
+            addCriterion("sortpx =", value, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxNotEqualTo(Integer value) {
+            addCriterion("sortpx <>", value, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxGreaterThan(Integer value) {
+            addCriterion("sortpx >", value, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sortpx >=", value, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxLessThan(Integer value) {
+            addCriterion("sortpx <", value, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxLessThanOrEqualTo(Integer value) {
+            addCriterion("sortpx <=", value, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxIn(List<Integer> values) {
+            addCriterion("sortpx in", values, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxNotIn(List<Integer> values) {
+            addCriterion("sortpx not in", values, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxBetween(Integer value1, Integer value2) {
+            addCriterion("sortpx between", value1, value2, "sortpx");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortpxNotBetween(Integer value1, Integer value2) {
+            addCriterion("sortpx not between", value1, value2, "sortpx");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

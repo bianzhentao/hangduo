@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>添加下级目录</h2>
+<form action="/doadddown" method="post">
+    <p>目录名称：<input type="text" name="cname"></p>
+    <p>同级目录排序：<input type="text" name="sortpx"></p>
+    <p><input type="hidden" name="cataName" th:value="${catalog.catalogId}"></p>
+    <p>所属法规：<input type="text" th:value="${catalog.catalogName}" readonly></p>
+    <p><input type="hidden" name="cataId" th:value="${dirname.cid}"></p>
+    <p>上级目录<input type="text" th:value="${dirname.cname}" readonly></p>
+    <input type="submit" value="保存"><input type="button" value="返回" onclick="back()">
+</form>
+</body>
+</html>

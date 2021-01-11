@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span>法规目录列表</span>           <a th:href="@{/doadd}">添加顶级目录</a>
+<form action="/select" method="post">
+    选择法规<select name="cataName">
+    <option th:value="0">请选择</option>
+    <option th:selected="${cataName eq c.catalogId}" th:each="c:${catalogs}" th:value="${c.catalogId}" th:text="${c.catalogName}"></option>
+</select>
+    <input type="submit" value="查询">
+</form>
+<table>
+    <tr>
+        <td>目录名称</td>
+        <td>排序</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="m:${map}">
+        <td th:text="${m.key.cname}"></td>
+        <td th:text="${m.key.sortpx}"></td>
+        <td>
+            <a th:href="@{/update(cid=${m.key.cid})}">修改</a>
+            <a href="#">删除</a>
+            <a th:href="@{/adddown(cid=${m.key.cid})}">添加下级菜单</a>
+        </td>
+        <table>
+            <tr th:each="v:${m.value}">
+                <td th:text="${v.cname}"></td>
+                <td th:text="${v.sortpx}"></td>
+                <td>
+                    <a th:href="@{/update(cid=${v.cid})}">修改</a>
+                    <a href="#">删除</a>
+<!--                    <a href="#">添加下级菜单</a>-->
+                </td>
+            </tr>
+        </table>
+    </tr>
+</table>
+<!--<ul>-->
+<!--    <li th:each="m:${map}">-->
+<!--        <dl>-->
+<!--            <dt th:text="${m.key}"></dt>-->
+<!--            <dd th:each="n:${m.value}" th:text="${n.cname}"></dd>-->
+<!--        </dl>-->
+<!--    </li>-->
+<!--</ul>-->
+</body>
+</html>

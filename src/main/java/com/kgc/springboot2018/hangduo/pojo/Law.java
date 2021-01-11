@@ -1,6 +1,8 @@
 package com.kgc.springboot2018.hangduo.pojo;
 
 public class Law {
+    private Integer id;
+
     private String lawId;
 
     private String otherName;
@@ -12,6 +14,27 @@ public class Law {
     private String isshow;
 
     private String state;
+
+    @Override
+    public String toString() {
+        return "Law{" +
+                "id=" + id +
+                ", lawId='" + lawId + '\'' +
+                ", otherName='" + otherName + '\'' +
+                ", lawNum='" + lawNum + '\'' +
+                ", lawName='" + lawName + '\'' +
+                ", isshow='" + isshow + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getLawId() {
         return lawId;

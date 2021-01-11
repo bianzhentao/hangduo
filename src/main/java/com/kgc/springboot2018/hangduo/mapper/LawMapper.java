@@ -11,7 +11,7 @@ public interface LawMapper {
 
     int deleteByExample(LawExample example);
 
-    int deleteByPrimaryKey(String lawId);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Law record);
 
@@ -19,7 +19,7 @@ public interface LawMapper {
 
     List<Law> selectByExample(LawExample example);
 
-    Law selectByPrimaryKey(String lawId);
+    Law selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Law record, @Param("example") LawExample example);
 
